@@ -1,0 +1,272 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   THEME
+   ============================================================ */
+
+:root {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+/* ============================================================
+   GLOBAL
+   ============================================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+body {
+  @apply bg-paper text-ink font-sans antialiased;
+  font-feature-settings: "ss01" 1;
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease;
+}
+
+/* ============================================================
+   DARK THEME
+   Existing components use custom Tailwind classes such as
+   bg-paper, text-ink, bg-void, text-bone, etc.
+   These overrides allow the whole site to switch automatically.
+   ============================================================ */
+
+html.dark .bg-paper {
+  background-color: #0d0c0a;
+}
+
+html.dark .bg-paper-soft {
+  background-color: #151310;
+}
+
+html.dark .text-ink {
+  color: #f3eee3;
+}
+
+html.dark .text-ink-muted {
+  color: #b9b1a3;
+}
+
+html.dark .bg-void {
+  background-color: #080807;
+}
+
+html.dark .bg-void-soft {
+  background-color: #11100e;
+}
+
+html.dark .text-bone {
+  color: #f3eee3;
+}
+
+html.dark .text-bone-muted {
+  color: #b9b1a3;
+}
+
+/* Borders */
+html.dark .border-ink\/10 {
+  border-color: rgba(243, 238, 227, 0.10);
+}
+
+html.dark .border-ink\/15 {
+  border-color: rgba(243, 238, 227, 0.15);
+}
+
+html.dark .border-ink\/20 {
+  border-color: rgba(243, 238, 227, 0.20);
+}
+
+html.dark .border-ink\/25 {
+  border-color: rgba(243, 238, 227, 0.25);
+}
+
+html.dark .border-bone\/10 {
+  border-color: rgba(243, 238, 227, 0.10);
+}
+
+html.dark .border-bone\/15 {
+  border-color: rgba(243, 238, 227, 0.15);
+}
+
+html.dark .border-bone\/20 {
+  border-color: rgba(243, 238, 227, 0.20);
+}
+
+/* Gold */
+html.dark .text-gold {
+  color: #c69a3e;
+}
+
+html.dark .text-gold-dim {
+  color: #b88b35;
+}
+
+html.dark .text-gold-bright {
+  color: #e0b85b;
+}
+
+html.dark .bg-gold {
+  background-color: #c69a3e;
+}
+
+/* ============================================================
+   SELECTION / FOCUS
+   ============================================================ */
+
+::selection {
+  background: #c69a3e;
+  color: #0d0c0a;
+}
+
+:focus-visible {
+  outline: 2px solid #c69a3e;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+
+.scroll-thin::-webkit-scrollbar {
+  height: 4px;
+}
+
+.scroll-thin::-webkit-scrollbar-thumb {
+  background: #c69a3e;
+  border-radius: 4px;
+}
+
+/* ============================================================
+   CONTAINER
+   ============================================================ */
+
+.container-edit {
+  @apply mx-auto w-full max-w-content px-6 sm:px-8 lg:px-12;
+}
+
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+
+.eyebrow {
+  @apply text-xs tracking-[0.22em] uppercase font-medium;
+}
+
+.rule {
+  @apply h-px w-full bg-current opacity-10;
+}
+
+/* ============================================================
+   REVEAL ANIMATION
+   ============================================================ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ============================================================
+   HERO TEXT GLOW
+   ============================================================ */
+
+.text-glow {
+  text-shadow: 0 0 30px rgba(198, 154, 62, 0.35);
+}
+
+/* ============================================================
+   CARDS
+   ============================================================ */
+
+.card-glow {
+  transition:
+    box-shadow 0.4s ease,
+    transform 0.4s ease,
+    border-color 0.4s ease;
+}
+
+.card-glow:hover,
+.card-glow:focus-within {
+  transform: translateY(-4px);
+}
+
+/* ============================================================
+   TAGS
+   ============================================================ */
+
+.tag-pill {
+  @apply inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[0.7rem] tracking-wide;
+}
+
+/* ============================================================
+   THEME TRANSITIONS
+   ============================================================ */
+
+.bg-paper,
+.bg-paper-soft,
+.bg-void,
+.bg-void-soft,
+.text-ink,
+.text-ink-muted,
+.text-bone,
+.text-bone-muted,
+.border-ink\/10,
+.border-ink\/15,
+.border-ink\/20,
+.border-ink\/25,
+.border-bone\/10,
+.border-bone\/15,
+.border-bone\/20 {
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease,
+    border-color 0.35s ease;
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
