@@ -26,12 +26,16 @@ html.dark {
 
 html {
   scroll-behavior: smooth;
-  transition: background-color 0.35s ease, color 0.35s ease;
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease;
 }
 
 body {
   @apply bg-paper text-ink font-sans antialiased;
+
   font-feature-settings: "ss01" 1;
+
   transition:
     background-color 0.35s ease,
     color 0.35s ease;
@@ -39,9 +43,6 @@ body {
 
 /* ============================================================
    DARK THEME
-   Existing components use custom Tailwind classes such as
-   bg-paper, text-ink, bg-void, text-bone, etc.
-   These overrides allow the whole site to switch automatically.
    ============================================================ */
 
 html.dark .bg-paper {
@@ -76,9 +77,12 @@ html.dark .text-bone-muted {
   color: #b9b1a3;
 }
 
-/* Borders */
+/* ============================================================
+   DARK THEME — BORDERS
+   ============================================================ */
+
 html.dark .border-ink\/10 {
-  border-color: rgba(243, 238, 227, 0.10);
+  border-color: rgba(243, 238, 227, 0.1);
 }
 
 html.dark .border-ink\/15 {
@@ -86,7 +90,7 @@ html.dark .border-ink\/15 {
 }
 
 html.dark .border-ink\/20 {
-  border-color: rgba(243, 238, 227, 0.20);
+  border-color: rgba(243, 238, 227, 0.2);
 }
 
 html.dark .border-ink\/25 {
@@ -94,7 +98,7 @@ html.dark .border-ink\/25 {
 }
 
 html.dark .border-bone\/10 {
-  border-color: rgba(243, 238, 227, 0.10);
+  border-color: rgba(243, 238, 227, 0.1);
 }
 
 html.dark .border-bone\/15 {
@@ -102,10 +106,13 @@ html.dark .border-bone\/15 {
 }
 
 html.dark .border-bone\/20 {
-  border-color: rgba(243, 238, 227, 0.20);
+  border-color: rgba(243, 238, 227, 0.2);
 }
 
-/* Gold */
+/* ============================================================
+   DARK THEME — GOLD
+   ============================================================ */
+
 html.dark .text-gold {
   color: #c69a3e;
 }
@@ -177,6 +184,7 @@ html.dark .bg-gold {
 .reveal {
   opacity: 0;
   transform: translateY(18px);
+
   transition:
     opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
@@ -200,7 +208,8 @@ html.dark .bg-gold {
    ============================================================ */
 
 .text-glow {
-  text-shadow: 0 0 30px rgba(198, 154, 62, 0.35);
+  text-shadow:
+    0 0 30px rgba(198, 154, 62, 0.35);
 }
 
 /* ============================================================
@@ -253,6 +262,314 @@ html.dark .bg-gold {
 }
 
 /* ============================================================
+   PREMIUM HERO
+   ============================================================ */
+
+.hero-portrait-wrap {
+  position: relative;
+
+  width: min(100%, 470px);
+
+  margin-inline: auto;
+}
+
+/* ============================================================
+   PORTRAIT CARD
+   ============================================================ */
+
+.hero-portrait-card {
+  position: relative;
+
+  /*
+   * Slightly taller than the previous 4:5 ratio.
+   * This gives the original photo more vertical space
+   * and prevents the top of the hair from being cropped.
+   */
+  aspect-ratio: 4 / 5.4;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(198, 154, 62, 0.55);
+
+  border-radius: 2rem;
+
+  background: #11100e;
+
+  box-shadow:
+    0 20px 60px rgba(198, 154, 62, 0.12),
+    0 0 35px rgba(198, 154, 62, 0.08);
+
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.5s ease;
+}
+
+/* ============================================================
+   PORTRAIT IMAGE
+   ============================================================ */
+
+.hero-portrait-card img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  /*
+   * Keep the full top portion of the photograph visible.
+   */
+  object-fit: cover;
+
+  object-position: center top;
+}
+
+/* ============================================================
+   GOLD ORBIT
+   ============================================================ */
+
+.hero-orbit {
+  position: absolute;
+
+  width: 430px;
+  height: 430px;
+
+  left: -185px;
+  top: 85px;
+
+  border: 1px solid rgba(198, 154, 62, 0.25);
+
+  border-radius: 50%;
+
+  pointer-events: none;
+}
+
+/* ============================================================
+   RIGHT DECORATIVE LINE
+   ============================================================ */
+
+.hero-side-line {
+  position: absolute;
+
+  right: -34px;
+  top: 40px;
+
+  width: 1px;
+  height: 78%;
+
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(198, 154, 62, 0.45),
+    transparent
+  );
+
+  pointer-events: none;
+}
+
+/* ============================================================
+   RIGHT DECORATIVE DOT
+   ============================================================ */
+
+.hero-side-dot {
+  position: absolute;
+
+  right: -40px;
+  top: 25%;
+
+  width: 12px;
+  height: 12px;
+
+  border-radius: 50%;
+
+  background: #c69a3e;
+
+  box-shadow:
+    0 0 18px rgba(198, 154, 62, 0.35);
+
+  pointer-events: none;
+}
+
+/* ============================================================
+   AI / DS BADGE
+   ============================================================ */
+
+.hero-ai-badge {
+  position: absolute;
+
+  /*
+   * Slightly higher than before so the badge
+   * doesn't get cut off by the viewport.
+   */
+  left: -52px;
+  bottom: 25px;
+
+  z-index: 5;
+
+  width: 112px;
+  height: 112px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(198, 154, 62, 0.55);
+
+  border-radius: 50%;
+
+  background: rgba(250, 247, 239, 0.96);
+
+  color: #171512;
+
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.12),
+    0 0 25px rgba(198, 154, 62, 0.12);
+
+  font-family: "Fraunces", serif;
+
+  font-size: 1.15rem;
+
+  line-height: 1.1;
+
+  text-align: center;
+}
+
+/* Dark mode badge */
+
+html.dark .hero-ai-badge {
+  background: rgba(17, 16, 14, 0.96);
+
+  color: #f3eee3;
+}
+
+/* ============================================================
+   SCROLL INDICATOR
+   ============================================================ */
+
+.hero-scroll {
+  margin-top: 28px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 7px;
+
+  color: #4b4740;
+}
+
+html.dark .hero-scroll {
+  color: #b9b1a3;
+}
+
+.hero-scroll-label {
+  font-size: 0.72rem;
+
+  letter-spacing: 0.3em;
+
+  text-transform: uppercase;
+}
+
+.hero-scroll-arrow {
+  font-size: 1.4rem;
+
+  line-height: 1;
+
+  color: #c69a3e;
+}
+
+/* ============================================================
+   HERO HOVER
+   ============================================================ */
+
+.hero-portrait-wrap:hover .hero-portrait-card {
+  transform: translateY(-5px);
+
+  box-shadow:
+    0 25px 70px rgba(198, 154, 62, 0.16),
+    0 0 45px rgba(198, 154, 62, 0.1);
+}
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 1023px) {
+  .hero-orbit {
+    width: 360px;
+    height: 360px;
+
+    left: -120px;
+    top: 80px;
+  }
+
+  .hero-side-line,
+  .hero-side-dot {
+    display: none;
+  }
+}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 639px) {
+  .hero-portrait-wrap {
+    width: min(100%, 340px);
+  }
+
+  .hero-portrait-card {
+    border-radius: 1.5rem;
+
+    /*
+     * Slightly more vertical space on mobile too.
+     */
+    aspect-ratio: 4 / 5.3;
+  }
+
+  .hero-orbit {
+    width: 280px;
+    height: 280px;
+
+    left: -85px;
+    top: 65px;
+  }
+
+  .hero-ai-badge {
+    left: -22px;
+    bottom: 18px;
+
+    width: 82px;
+    height: 82px;
+
+    font-size: 0.95rem;
+  }
+
+  .hero-scroll {
+    margin-top: 22px;
+  }
+}
+
+/* ============================================================
+   VERY SMALL MOBILE
+   ============================================================ */
+
+@media (max-width: 400px) {
+  .hero-portrait-wrap {
+    width: min(100%, 300px);
+  }
+
+  .hero-ai-badge {
+    left: -10px;
+
+    width: 72px;
+    height: 72px;
+
+    font-size: 0.85rem;
+  }
+}
+
+/* ============================================================
    REDUCED MOTION
    ============================================================ */
 
@@ -268,5 +585,9 @@ html.dark .bg-gold {
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
+  }
+
+  .hero-portrait-card {
+    transform: none !important;
   }
 }

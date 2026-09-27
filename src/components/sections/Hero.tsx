@@ -1,6 +1,6 @@
 import { useRef, useState, type MouseEventHandler } from "react";
 import { motion } from "framer-motion";
-import { ArrowDown, Mail, User } from "lucide-react";
+import { Mail, User } from "lucide-react";
 import { profile } from "../../data/profile";
 import { useLanguage } from "../../lib/LanguageContext";
 import { GithubIcon, LinkedinIcon } from "../ui/BrandIcons";
@@ -8,12 +8,18 @@ import { GithubIcon, LinkedinIcon } from "../ui/BrandIcons";
 const container = {
   hidden: {},
   show: {
-    transition: { staggerChildren: 0.12, delayChildren: 0.15 },
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.15,
+    },
   },
 };
 
 const item = {
-  hidden: { opacity: 0, y: 22 },
+  hidden: {
+    opacity: 0,
+    y: 22,
+  },
   show: {
     opacity: 1,
     y: 0,
@@ -59,9 +65,12 @@ export function Hero() {
           active: false,
         }))
       }
-      className="relative overflow-hidden bg-paper pt-32 pb-20 lg:pt-40 lg:pb-28"
+      className="relative overflow-hidden bg-paper pt-32 pb-20 lg:min-h-[calc(100vh-80px)] lg:pt-36 lg:pb-16"
     >
-      {/* Cursor glow */}
+      {/* =====================================================
+          CURSOR GOLD GLOW
+      ===================================================== */}
+
       <div
         className="pointer-events-none absolute inset-0 hidden transition-opacity duration-500 [@media(pointer:fine)]:block"
         style={{
@@ -75,44 +84,65 @@ export function Hero() {
         aria-hidden="true"
       />
 
-      <div className="container-edit relative grid grid-cols-1 items-center gap-16 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20">
-        {/* =====================================================
-            COPY — LEFT
-        ===================================================== */}
+      {/* =====================================================
+          HERO CONTENT
+      ===================================================== */}
+
+      <div className="container-edit relative z-10 grid grid-cols-1 items-center gap-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 xl:grid-cols-[1.1fr_0.9fr] xl:gap-20">
+
+        {/* ===================================================
+            LEFT — INTRODUCTION
+        =================================================== */}
+
         <motion.div
           variants={container}
           initial="hidden"
           animate="show"
           className="order-1"
         >
-          <motion.p variants={item} className="eyebrow text-gold-dim">
-            {t.hero.eyebrow}
-          </motion.p>
-
-          <motion.h1
-            variants={item}
-            className="mt-5 font-display font-medium leading-[0.98] text-ink text-[clamp(2.75rem,7vw,5.5rem)]"
-          >
-            {t.hero.greeting}
-            <br />
-            <span className="text-glow">{profile.name}</span>
-          </motion.h1>
+          {/* Eyebrow */}
 
           <motion.p
             variants={item}
-            className="mt-7 max-w-xl text-lg leading-relaxed text-ink-muted"
+            className="eyebrow text-gold-dim"
+          >
+            {t.hero.eyebrow}
+          </motion.p>
+
+          {/* Main heading */}
+
+          <motion.h1
+            variants={item}
+            className="mt-5 max-w-3xl font-display font-medium leading-[0.96] text-ink text-[clamp(3rem,7vw,6.4rem)]"
+          >
+            {t.hero.greeting}
+            <br />
+
+            <span className="text-glow">
+              {profile.name}
+            </span>
+          </motion.h1>
+
+          {/* Description */}
+
+          <motion.p
+            variants={item}
+            className="mt-7 max-w-xl text-base leading-relaxed text-ink-muted sm:text-lg"
           >
             {profile.heroSubtext}
           </motion.p>
 
-          {/* Buttons */}
+          {/* =================================================
+              BUTTONS
+          ================================================= */}
+
           <motion.div
             variants={item}
             className="mt-9 flex flex-wrap items-center gap-4"
           >
             <a
               href={profile.cvUrl || "#contact"}
-              className="rounded-full bg-ink px-7 py-3.5 text-sm font-medium tracking-wide text-paper transition-colors hover:bg-gold hover:text-ink"
+              className="rounded-full bg-ink px-7 py-3.5 text-sm font-medium tracking-wide text-paper transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold hover:text-ink"
             >
               {t.hero.downloadCv.toUpperCase()}
             </a>
@@ -125,13 +155,16 @@ export function Hero() {
                     behavior: "smooth",
                   })
               }
-              className="rounded-full border border-ink/25 px-7 py-3.5 text-sm font-medium tracking-wide text-ink transition-colors hover:border-gold hover:text-gold-dim"
+              className="rounded-full border border-ink/25 px-7 py-3.5 text-sm font-medium tracking-wide text-ink transition-all duration-300 hover:-translate-y-0.5 hover:border-gold hover:text-gold-dim"
             >
               {t.hero.contactMe.toUpperCase()}
             </button>
           </motion.div>
 
-          {/* Social links */}
+          {/* =================================================
+              SOCIAL LINKS
+          ================================================= */}
+
           <motion.div
             variants={item}
             className="mt-10 flex items-center gap-5"
@@ -170,97 +203,138 @@ export function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* =====================================================
-            PORTRAIT — RIGHT
-        ===================================================== */}
+        {/* ===================================================
+            RIGHT — PREMIUM PORTRAIT
+        =================================================== */}
+
         <motion.div
-          initial={{ opacity: 0, scale: 0.94 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{
+            opacity: 0,
+            x: 35,
+            scale: 0.96,
+          }}
+          animate={{
+            opacity: 1,
+            x: 0,
+            scale: 1,
+          }}
           transition={{
-            duration: 0.9,
+            duration: 0.95,
+            delay: 0.15,
             ease: [0.22, 1, 0.36, 1],
           }}
-          className="relative order-2 mx-auto w-full max-w-sm lg:max-w-md"
+          className="order-2"
         >
-          <div
-            className="relative aspect-[4/5] w-full bg-void-soft shadow-gold-glow"
-            style={{
-              borderRadius:
-                "42% 58% 65% 35% / 45% 45% 55% 55%",
-            }}
-          >
-            {hasPhoto ? (
-              <img
-                src={profile.photo.src}
-                alt={profile.photo.alt}
-                className="h-full w-full object-cover"
-                style={{
-                  borderRadius:
-                    "42% 58% 65% 35% / 45% 45% 55% 55%",
-                }}
-              />
-            ) : (
-              <div
-                className="flex h-full w-full items-center justify-center overflow-hidden"
-                style={{
-                  borderRadius:
-                    "42% 58% 65% 35% / 45% 45% 55% 55%",
-                }}
-              >
-                <User
-                  size={72}
-                  strokeWidth={1}
-                  className="text-gold/60"
-                />
-              </div>
-            )}
-          </div>
+          <div className="hero-portrait-wrap">
 
-          {/* Floating AI / DS badge */}
-          <motion.div
-            animate={{ y: [0, -10, 0] }}
-            transition={{
-              duration: 5,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="absolute -bottom-6 -left-4 grid h-24 w-24 place-items-center rounded-full border border-gold/40 bg-paper text-center shadow-lg motion-reduce:animate-none sm:-left-6"
-          >
-            <span className="font-display text-xs leading-tight text-ink">
-              AI ·
-              <br />
-              DS
-            </span>
-          </motion.div>
+            {/* =============================================
+                GOLD ORBIT
+            ============================================= */}
+
+            <div
+              className="hero-orbit"
+              aria-hidden="true"
+            />
+
+            {/* =============================================
+                RIGHT GOLD LINE
+            ============================================= */}
+
+            <div
+              className="hero-side-line"
+              aria-hidden="true"
+            />
+
+            {/* =============================================
+                GOLD DOT
+            ============================================= */}
+
+            <div
+              className="hero-side-dot"
+              aria-hidden="true"
+            />
+
+            {/* =============================================
+                PORTRAIT CARD
+            ============================================= */}
+
+            <div className="hero-portrait-card">
+              {hasPhoto ? (
+                <img
+                  src={profile.photo.src}
+                  alt={profile.photo.alt}
+                />
+              ) : (
+                <div className="flex h-full w-full items-center justify-center">
+                  <User
+                    size={72}
+                    strokeWidth={1}
+                    className="text-gold/60"
+                  />
+                </div>
+              )}
+            </div>
+
+            {/* =============================================
+                AI / DS BADGE
+            ============================================= */}
+
+            <motion.div
+              animate={{
+                y: [0, -8, 0],
+              }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="hero-ai-badge motion-reduce:animate-none"
+            >
+              <span>
+                AI ·
+                <br />
+                DS
+              </span>
+            </motion.div>
+
+            {/* =============================================
+                SCROLL
+            ============================================= */}
+
+            <motion.div
+              initial={{
+                opacity: 0,
+              }}
+              animate={{
+                opacity: 1,
+              }}
+              transition={{
+                delay: 1.15,
+                duration: 0.8,
+              }}
+              className="hero-scroll"
+            >
+              <span className="hero-scroll-label">
+                Scroll
+              </span>
+
+              <motion.span
+                animate={{
+                  y: [0, 6, 0],
+                }}
+                transition={{
+                  duration: 1.8,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="hero-scroll-arrow motion-reduce:animate-none"
+              >
+                ↓
+              </motion.span>
+            </motion.div>
+          </div>
         </motion.div>
       </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{
-          delay: 1.1,
-          duration: 0.8,
-        }}
-        className="pointer-events-none absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-ink-muted sm:flex"
-      >
-        <span className="eyebrow text-[0.65rem]">
-          Scroll
-        </span>
-
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{
-            duration: 1.8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="motion-reduce:animate-none"
-        >
-          <ArrowDown size={16} />
-        </motion.div>
-      </motion.div>
     </section>
   );
 }
