@@ -20,6 +20,23 @@ export interface ExperienceEntry {
 
 export const experience: ExperienceEntry[] = [
   {
+    id: "research-assistant",
+    role: "Research Assistant",
+    organization:
+      "Research & Development (R&D) Department, Dhaanish Ahmed College of Engineering",
+    period: "May 2025 – Present",
+    description:
+      "Contributing to academic research in Artificial Intelligence and Data Science, including literature review, data analysis, machine learning experimentation, manuscript preparation, research documentation, and development of research-oriented projects.",
+    tags: [
+      "Research",
+      "Artificial Intelligence",
+      "Data Science",
+      "Machine Learning",
+      "Data Analysis",
+      "Research Writing",
+    ],
+  },
+  {
     id: "yuva-intern",
     role: "Junior Data Analyst – Business Analytics with Python",
     organization: "YuvaIntern",
