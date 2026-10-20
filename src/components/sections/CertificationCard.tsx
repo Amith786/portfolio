@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useId, useState } from "react";
 import {
   ExternalLink,
   FileText,
@@ -7,6 +7,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import type { Certification } from "../../data/certifications";
+import { useLanguage } from "../../lib/LanguageContext";
 import { Modal } from "../ui/Modal";
 
 export function CertificationCard({
@@ -16,6 +17,9 @@ export function CertificationCard({
 }) {
   const [open, setOpen] = useState(false);
   const [activeImage, setActiveImage] = useState(0);
+  const { language } = useLanguage();
+
+  const isGerman = language === "de";
 
   const certificateImages =
     certification.images && certification.images.length > 0
@@ -24,7 +28,9 @@ export function CertificationCard({
         ? [certification.image]
         : [];
 
-  const titleId = `certification-${certification.id}-title`;
+  // Unique ID for duplicated marquee cards
+  const uniqueId = useId();
+  const titleId = `certification-${certification.id}-${uniqueId}-title`;
 
   const nextImage = () => {
     if (certificateImages.length <= 1) return;
@@ -72,14 +78,15 @@ export function CertificationCard({
           {/* Multiple image indicator */}
           {certificateImages.length > 1 && (
             <div className="absolute right-3 top-3 rounded-full bg-void/80 px-3 py-1 text-xs font-medium text-bone backdrop-blur-sm">
-              {certificateImages.length} images
+              {certificateImages.length}{" "}
+              {isGerman ? "Bilder" : "images"}
             </div>
           )}
 
           {/* Expired badge */}
           {certification.expired && (
             <div className="absolute left-3 top-3 rounded-full bg-ink/80 px-3 py-1 text-xs font-medium text-bone backdrop-blur-sm">
-              Expired
+              {isGerman ? "Abgelaufen" : "Expired"}
             </div>
           )}
         </div>
@@ -96,23 +103,26 @@ export function CertificationCard({
             {certification.issuer}
           </p>
 
-          {certification.skills && certification.skills.length > 0 && (
-            <div className="mt-4 flex flex-wrap gap-2">
-              {certification.skills.slice(0, 4).map((skill) => (
-                <span
-                  key={skill}
-                  className="tag-pill border-ink/15 text-ink-muted"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
-          )}
+          {certification.skills &&
+            certification.skills.length > 0 && (
+              <div className="mt-4 flex flex-wrap gap-2">
+                {certification.skills.slice(0, 4).map((skill) => (
+                  <span
+                    key={skill}
+                    className="tag-pill border-ink/15 text-ink-muted"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            )}
 
           <div className="mt-auto pt-5">
             <span className="inline-flex items-center gap-2 text-xs font-medium tracking-wide text-gold-dim">
               <FileText size={14} />
-              View Certificate →
+              {isGerman
+                ? "Zertifikat ansehen →"
+                : "View Certificate →"}
             </span>
           </div>
         </div>
@@ -128,7 +138,9 @@ export function CertificationCard({
           {/* Header */}
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div>
-              <p className="eyebrow text-gold">{certification.date}</p>
+              <p className="eyebrow text-gold">
+                {certification.date}
+              </p>
 
               <h3
                 id={titleId}
@@ -144,7 +156,7 @@ export function CertificationCard({
 
             {certification.expired && (
               <span className="tag-pill border-red-400/40 text-red-300">
-                Expired
+                {isGerman ? "Abgelaufen" : "Expired"}
               </span>
             )}
           </div>
@@ -155,7 +167,9 @@ export function CertificationCard({
               <div className="relative overflow-hidden rounded-xl border border-bone/10 bg-void-soft">
                 <img
                   src={certificateImages[activeImage]}
-                  alt={`${certification.name} certificate ${activeImage + 1}`}
+                  alt={`${certification.name} certificate ${
+                    activeImage + 1
+                  }`}
                   className="max-h-[65vh] w-full object-contain"
                 />
 
@@ -164,7 +178,11 @@ export function CertificationCard({
                     <button
                       type="button"
                       onClick={previousImage}
-                      aria-label="Previous certificate"
+                      aria-label={
+                        isGerman
+                          ? "Vorheriges Zertifikat"
+                          : "Previous certificate"
+                      }
                       className="absolute left-3 top-1/2 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full bg-void/80 text-bone backdrop-blur-sm transition-colors hover:bg-gold hover:text-void"
                     >
                       <ChevronLeft size={20} />
@@ -173,7 +191,11 @@ export function CertificationCard({
                     <button
                       type="button"
                       onClick={nextImage}
-                      aria-label="Next certificate"
+                      aria-label={
+                        isGerman
+                          ? "Nächstes Zertifikat"
+                          : "Next certificate"
+                      }
                       className="absolute right-3 top-1/2 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full bg-void/80 text-bone backdrop-blur-sm transition-colors hover:bg-gold hover:text-void"
                     >
                       <ChevronRight size={20} />
@@ -190,7 +212,11 @@ export function CertificationCard({
                       key={index}
                       type="button"
                       onClick={() => setActiveImage(index)}
-                      aria-label={`View certificate image ${index + 1}`}
+                      aria-label={
+                        isGerman
+                          ? `Zertifikatsbild ${index + 1} anzeigen`
+                          : `View certificate image ${index + 1}`
+                      }
                       className={`h-2 rounded-full transition-all ${
                         activeImage === index
                           ? "w-6 bg-gold"
@@ -207,7 +233,10 @@ export function CertificationCard({
           <div className="mt-7 space-y-5">
             {certification.credentialId && (
               <div>
-                <p className="eyebrow text-gold">Credential ID</p>
+                <p className="eyebrow text-gold">
+                  {isGerman ? "Nachweis-ID" : "Credential ID"}
+                </p>
+
                 <p className="mt-2 break-all text-sm text-bone-muted">
                   {certification.credentialId}
                 </p>
@@ -216,29 +245,37 @@ export function CertificationCard({
 
             {certification.description && (
               <div>
-                <p className="eyebrow text-gold">About</p>
+                <p className="eyebrow text-gold">
+                  {isGerman
+                    ? "Über diese Zertifizierung"
+                    : "About"}
+                </p>
+
                 <p className="mt-2 text-sm leading-relaxed text-bone-muted">
                   {certification.description}
                 </p>
               </div>
             )}
 
-            {certification.skills && certification.skills.length > 0 && (
-              <div>
-                <p className="eyebrow text-gold">Skills</p>
+            {certification.skills &&
+              certification.skills.length > 0 && (
+                <div>
+                  <p className="eyebrow text-gold">
+                    {isGerman ? "Fähigkeiten" : "Skills"}
+                  </p>
 
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {certification.skills.map((skill) => (
-                    <span
-                      key={skill}
-                      className="tag-pill border-bone/15 text-bone-muted"
-                    >
-                      {skill}
-                    </span>
-                  ))}
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {certification.skills.map((skill) => (
+                      <span
+                        key={skill}
+                        className="tag-pill border-bone/15 text-bone-muted"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
           </div>
 
           {/* Links */}
@@ -252,7 +289,9 @@ export function CertificationCard({
                 className="inline-flex items-center gap-2 rounded-full border border-bone/20 px-4 py-2 text-xs font-medium text-bone transition-colors hover:border-gold hover:text-gold"
               >
                 <ExternalLink size={13} />
-                Verify Credential
+                {isGerman
+                  ? "Nachweis überprüfen"
+                  : "Verify Credential"}
               </a>
             )}
 
@@ -265,7 +304,9 @@ export function CertificationCard({
                 className="inline-flex items-center gap-2 rounded-full border border-bone/20 px-4 py-2 text-xs font-medium text-bone transition-colors hover:border-gold hover:text-gold"
               >
                 <FileText size={13} />
-                Open Certificate
+                {isGerman
+                  ? "Zertifikat öffnen"
+                  : "Open Certificate"}
               </a>
             )}
           </div>

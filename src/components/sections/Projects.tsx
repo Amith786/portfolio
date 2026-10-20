@@ -8,12 +8,25 @@ export function Projects() {
   const { t } = useLanguage();
 
   return (
-    <section id="projects" className="bg-paper py-24 lg:py-32">
+    <section
+      id="projects"
+      className="bg-paper py-24 lg:py-32"
+    >
       <div className="container-edit">
-        <SectionHeading title={t.projects.heading} tone="light" />
-        <div className="mt-16 grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3">
+        <SectionHeading
+          title={t.projects.heading}
+          tone="light"
+        />
+
+        <div
+          className="mt-16 grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3"
+          aria-label={t.projects.heading}
+        >
           {projects.map((project, i) => (
-            <Reveal key={project.id} delayMs={(i % 3) * 60}>
+            <Reveal
+              key={project.id}
+              delayMs={(i % 3) * 60}
+            >
               <ProjectCard project={project} />
             </Reveal>
           ))}

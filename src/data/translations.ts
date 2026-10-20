@@ -1,8 +1,3 @@
-// Structural translation dictionary. English is fully implemented; German
-// covers navigation, headings and UI chrome so the switcher is meaningful
-// without machine-translating long-form bio/project copy (per project brief).
-// Extend the `de` branch with real translations as full localisation is needed.
-
 export type Language = "en" | "de";
 
 export interface TranslationShape {
@@ -13,33 +8,83 @@ export interface TranslationShape {
     education: string;
     research: string;
     achievements: string;
+    certifications: string;
     projects: string;
     contact: string;
   };
+
   hero: {
     eyebrow: string;
     greeting: string;
     downloadCv: string;
     contactMe: string;
+    scroll: string;
   };
-  about: { heading: string };
-  skills: { heading: string };
-  experience: { heading: string };
-  education: { heading: string };
+
+  about: {
+    heading: string;
+    focusAreas: string;
+    skills: string;
+  };
+
+  skills: {
+    heading: string;
+  };
+
+  experience: {
+    heading: string;
+    present: string;
+    viewCertificate: string;
+    close: string;
+  };
+
+  education: {
+    heading: string;
+    completed: string;
+    languageStudy: string;
+    inProgress: string;
+  };
+
   research: {
     heading: string;
     journals: string;
     conferences: string;
+    author: string;
+    presenter: string;
+    coAuthor: string;
+    authorAndPresenter: string;
+    withEditor: string;
+    peerReview: string;
+    published: string;
+    researchPaperPresented: string;
+    viewPaper: string;
+    viewCertificate: string;
+    close: string;
   };
-  achievements: { heading: string };
-  certifications: { heading: string };
+
+  achievements: {
+    heading: string;
+    viewCertificate: string;
+    close: string;
+  };
+
+  certifications: {
+    heading: string;
+    viewCertificate: string;
+    credential: string;
+    issued: string;
+    close: string;
+  };
+
   projects: {
     heading: string;
     viewProject: string;
     readMore: string;
     github: string;
     liveDemo: string;
+    close: string;
   };
+
   contact: {
     heading: string;
     subtext: string;
@@ -48,8 +93,12 @@ export interface TranslationShape {
     subject: string;
     message: string;
     send: string;
+    location: string;
   };
-  footer: { rights: string };
+
+  footer: {
+    rights: string;
+  };
 }
 
 export const translations: Record<Language, TranslationShape> = {
@@ -61,6 +110,7 @@ export const translations: Record<Language, TranslationShape> = {
       education: "Education",
       research: "Research & Publications",
       achievements: "Achievements",
+      certifications: "Certifications",
       projects: "Projects",
       contact: "Contact",
     },
@@ -70,36 +120,61 @@ export const translations: Record<Language, TranslationShape> = {
       greeting: "Hi, I'm",
       downloadCv: "Download CV",
       contactMe: "Contact Me",
+      scroll: "Scroll",
     },
 
     about: {
       heading: "About Me",
+      focusAreas: "Focus Areas",
+      skills: "Skills",
     },
-
     skills: {
       heading: "Skills",
     },
 
     experience: {
       heading: "Experience",
+      present: "Present",
+      viewCertificate: "View Certificate",
+      close: "Close",
     },
 
     education: {
       heading: "Education",
+      completed: "Completed",
+      languageStudy: "Language Study",
+      inProgress: "In Progress",
     },
 
     research: {
       heading: "Research & Publications",
       journals: "Journals",
       conferences: "Conferences",
+      author: "Author",
+      presenter: "Presenter",
+      coAuthor: "Co-author",
+      authorAndPresenter: "Author & Presenter",
+      withEditor: "With Editor",
+      peerReview: "Peer Review",
+      published: "Published",
+      researchPaperPresented: "Research Paper Presented",
+      viewPaper: "View Paper",
+      viewCertificate: "View Certificate",
+      close: "Close",
     },
 
     achievements: {
       heading: "Achievements",
+      viewCertificate: "View Certificate",
+      close: "Close",
     },
 
     certifications: {
       heading: "Certifications",
+      viewCertificate: "View Certificate",
+      credential: "Credential",
+      issued: "Issued",
+      close: "Close",
     },
 
     projects: {
@@ -108,6 +183,7 @@ export const translations: Record<Language, TranslationShape> = {
       readMore: "Read More",
       github: "GitHub",
       liveDemo: "Live Demo",
+      close: "Close",
     },
 
     contact: {
@@ -119,6 +195,7 @@ export const translations: Record<Language, TranslationShape> = {
       subject: "Subject",
       message: "Message",
       send: "Send Message",
+      location: "Kerala, India",
     },
 
     footer: {
@@ -134,6 +211,7 @@ export const translations: Record<Language, TranslationShape> = {
       education: "Ausbildung",
       research: "Forschung & Publikationen",
       achievements: "Erfolge",
+      certifications: "Zertifizierungen",
       projects: "Projekte",
       contact: "Kontakt",
     },
@@ -143,10 +221,13 @@ export const translations: Record<Language, TranslationShape> = {
       greeting: "Hallo, ich bin",
       downloadCv: "Lebenslauf herunterladen",
       contactMe: "Kontakt aufnehmen",
+      scroll: "Scrollen",
     },
 
     about: {
       heading: "Über mich",
+      focusAreas: "Schwerpunkte",
+      skills: "Fähigkeiten",
     },
 
     skills: {
@@ -154,25 +235,48 @@ export const translations: Record<Language, TranslationShape> = {
     },
 
     experience: {
-      heading: "Erfahrung",
+      heading: "Berufserfahrung",
+      present: "Heute",
+      viewCertificate: "Zertifikat ansehen",
+      close: "Schließen",
     },
 
     education: {
       heading: "Ausbildung",
+      completed: "Abgeschlossen",
+      languageStudy: "Sprachkenntnisse",
+      inProgress: "In Bearbeitung",
     },
 
     research: {
       heading: "Forschung & Publikationen",
       journals: "Fachzeitschriften",
       conferences: "Konferenzen",
+      author: "Autor",
+      presenter: "Präsentator",
+      coAuthor: "Co-Autor",
+      authorAndPresenter: "Autor & Präsentator",
+      withEditor: "Bei der Redaktion",
+      peerReview: "Begutachtung",
+      published: "Veröffentlicht",
+      researchPaperPresented: "Forschungsarbeit präsentiert",
+      viewPaper: "Publikation ansehen",
+      viewCertificate: "Zertifikat ansehen",
+      close: "Schließen",
     },
 
     achievements: {
       heading: "Erfolge",
+      viewCertificate: "Zertifikat ansehen",
+      close: "Schließen",
     },
 
     certifications: {
       heading: "Zertifizierungen",
+      viewCertificate: "Zertifikat ansehen",
+      credential: "Nachweis",
+      issued: "Ausgestellt",
+      close: "Schließen",
     },
 
     projects: {
@@ -181,17 +285,19 @@ export const translations: Record<Language, TranslationShape> = {
       readMore: "Mehr erfahren",
       github: "GitHub",
       liveDemo: "Live-Demo",
+      close: "Schließen",
     },
 
     contact: {
       heading: "Kontakt aufnehmen",
       subtext:
-        "Haben Sie ein Projekt, eine Forschungsidee oder eine Kooperationsmöglichkeit? Lassen Sie uns sprechen.",
+        "Haben Sie ein Projekt, eine Forschungsidee, eine Kooperationsmöglichkeit oder möchten Sie sich über technische Themen austauschen? Lassen Sie uns in Kontakt treten.",
       name: "Name",
       email: "E-Mail",
       subject: "Betreff",
       message: "Nachricht",
       send: "Nachricht senden",
+      location: "Kerala, Indien",
     },
 
     footer: {

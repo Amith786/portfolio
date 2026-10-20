@@ -31,22 +31,24 @@ export const conferences: ConferenceEntry[] = [
     role: "Presenter",
     venue: "IEEE ICETICS-2026",
     date: "10–11 July 2026",
-    location: "Bansal Institute of Science and Technology, Bhopal",
+    location:
+      "Bansal Institute of Science and Technology, Bhopal",
     presentationStatus: "Research Paper Presented",
     certificateUrl: iceticsCertificate,
   },
 
   {
-     id: "icndia-2026-presenter",
-     category: "presenter",
-     conferenceTitle:
+    id: "icndia-2026-presenter",
+    category: "presenter",
+    conferenceTitle:
       "IEEE International Conference on Nexus of Digitalization, Intelligence and Applications (ICNDIA 2026)",
     paperTitle:
       "Causal Machine Learning for Infrastructure Investment Efficiency in Environmental Management: A Double Machine Learning and Causal Forest Approach",
     role: "Presenter",
     venue: "IEEE ICNDIA 2026",
     date: "18–19 September 2026",
-    location: "Army Institute of Technology, Dighi, Pune, India",
+    location:
+      "Army Institute of Technology, Dighi, Pune, India",
     presentationStatus: "Research Paper Presented",
     certificateUrl: icndiaCertificate,
   },
@@ -71,12 +73,13 @@ export const conferences: ConferenceEntry[] = [
     date: "12–14 August 2026",
     location: "Shah Alam, Malaysia",
     presentationStatus: "Published in IEEE Xplore",
-    paperUrl: "https://ieeexplore.ieee.org/document/11688594",
+    paperUrl:
+      "https://ieeexplore.ieee.org/document/11688594",
     certificateUrl: cmssCertificate,
   },
 
   {
-     id: "seisae-2026-cardio",
+    id: "seisae-2026-cardio",
     category: "author",
     conferenceTitle:
       "International Conference on Sustainable Energy, Intelligent Systems & Advanced Engineering (SEISAE-2026)",
@@ -90,13 +93,12 @@ export const conferences: ConferenceEntry[] = [
       "Fahim Montasir",
       "Amith Anand",
     ],
-    role: "Co-author",
+    role: "Author & Presenter",
     venue: "IEEE SEISAE-2026",
     date: "29–30 September 2026",
-    location: "Gyan Ganga College of Technology, Jabalpur, India",
-    presentationStatus: "",
-    paperUrl: "",
+    location:
+      "Gyan Ganga College of Technology, Jabalpur, India",
+    presentationStatus: "Research Paper Presented",
     certificateUrl: seisaeCertificate,
   },
-
 ];

@@ -195,14 +195,6 @@ html.dark .bg-gold {
   transform: translateY(0);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-}
-
 /* ============================================================
    HERO TEXT GLOW
    ============================================================ */
@@ -267,9 +259,7 @@ html.dark .bg-gold {
 
 .hero-portrait-wrap {
   position: relative;
-
   width: min(100%, 470px);
-
   margin-inline: auto;
 }
 
@@ -280,11 +270,6 @@ html.dark .bg-gold {
 .hero-portrait-card {
   position: relative;
 
-  /*
-   * Slightly taller than the previous 4:5 ratio.
-   * This gives the original photo more vertical space
-   * and prevents the top of the hair from being cropped.
-   */
   aspect-ratio: 4 / 5.4;
 
   overflow: hidden;
@@ -314,11 +299,7 @@ html.dark .bg-gold {
 
   display: block;
 
-  /*
-   * Keep the full top portion of the photograph visible.
-   */
   object-fit: cover;
-
   object-position: center top;
 }
 
@@ -395,10 +376,6 @@ html.dark .bg-gold {
 .hero-ai-badge {
   position: absolute;
 
-  /*
-   * Slightly higher than before so the badge
-   * doesn't get cut off by the viewport.
-   */
   left: -52px;
   bottom: 25px;
 
@@ -436,7 +413,6 @@ html.dark .bg-gold {
 
 html.dark .hero-ai-badge {
   background: rgba(17, 16, 14, 0.96);
-
   color: #f3eee3;
 }
 
@@ -448,9 +424,7 @@ html.dark .hero-ai-badge {
   margin-top: 28px;
 
   display: flex;
-
   flex-direction: column;
-
   align-items: center;
 
   gap: 7px;
@@ -520,10 +494,6 @@ html.dark .hero-scroll {
 
   .hero-portrait-card {
     border-radius: 1.5rem;
-
-    /*
-     * Slightly more vertical space on mobile too.
-     */
     aspect-ratio: 4 / 5.3;
   }
 
@@ -570,12 +540,87 @@ html.dark .hero-scroll {
 }
 
 /* ============================================================
+   CERTIFICATIONS MARQUEE
+   ============================================================ */
+
+.cert-marquee {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.cert-marquee-track {
+  display: flex;
+  width: max-content;
+
+  animation: certifications-marquee 75s linear infinite;
+
+  will-change: transform;
+}
+
+.cert-marquee:hover .cert-marquee-track {
+  animation-play-state: paused;
+}
+
+.cert-marquee-group {
+  display: flex;
+  flex-shrink: 0;
+
+  gap: 1.5rem;
+
+  padding-right: 1.5rem;
+}
+
+.cert-marquee-card {
+  width: 300px;
+  flex-shrink: 0;
+}
+
+/* Tablet */
+
+@media (min-width: 640px) {
+  .cert-marquee-card {
+    width: 340px;
+  }
+}
+
+/* Desktop */
+
+@media (min-width: 1024px) {
+  .cert-marquee-card {
+    width: 370px;
+  }
+}
+
+/* Marquee animation */
+
+@keyframes certifications-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ============================================================
    REDUCED MOTION
    ============================================================ */
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .cert-marquee-track {
+    animation: none;
   }
 
   *,

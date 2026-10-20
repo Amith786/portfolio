@@ -20,7 +20,8 @@ export const education: EducationEntry[] = [
   {
     id: "hss",
     degree: "Higher Secondary",
-    institution: "Technical Higher Secondary School, Perinthalmanna",
+    institution:
+      "Technical Higher Secondary School, Perinthalmanna",
     detail: "Completed 2022 · 86.25%",
     period: "2020 – 2022",
   },
@@ -28,7 +29,8 @@ export const education: EducationEntry[] = [
   {
     id: "school",
     degree: "SSLC",
-    institution: "Government Higher Secondary School, Cherpulassery",
+    institution:
+      "Government Higher Secondary School, Cherpulassery",
     detail: "Completed 2020 · 93.33%",
     period: "2019 – 2020",
   },

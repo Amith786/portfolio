@@ -5,17 +5,46 @@ import { Reveal } from "../ui/Reveal";
 import { SectionHeading } from "../ui/SectionHeading";
 
 export function About() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+
+  const aboutContent =
+    language === "de"
+      ? {
+          headline: "Mit Daten,\nIntelligenz & Zielstrebigkeit gestalten.",
+          paragraphs: [
+            "Amith ist Absolvent eines B.Tech-Studiengangs in Künstlicher Intelligenz und Data Science am Dhaanish Ahmed College of Engineering, der Anna University angeschlossen ist.",
+            "Seine Arbeit verbindet angewandtes maschinelles Lernen mit wissenschaftlicher Forschung – von der Fusion von Satellitenbildern bis hin zu Prognosemodellen. Dabei liegt der Fokus darauf, zuverlässige und gut evaluierte Systeme zu entwickeln, anstatt nur experimentelle Lösungen umzusetzen.",
+            "Seine Interessen umfassen Data Science, Machine Learning, Künstliche Intelligenz, Computer Vision, Datenanalyse, Forschung und Python-basierte KI-Anwendungen.",
+          ],
+          focusAreas: [
+            "Künstliche Intelligenz",
+            "Data Science & Analytics",
+            "Maschinelles Lernen",
+            "Computer Vision",
+            "Forschung & angewandte KI",
+            "Python-Entwicklung",
+          ],
+        }
+      : {
+          headline: profile.aboutHeadline,
+          paragraphs: profile.aboutParagraphs,
+          focusAreas: [
+            "Artificial Intelligence",
+            "Data Science & Analytics",
+            "Machine Learning",
+            "Computer Vision",
+            "Research & Applied AI",
+            "Python Development",
+          ],
+        };
 
   return (
     <section id="about" className="bg-void py-24 lg:py-32">
       <div className="container-edit">
-
         {/* =====================================================
             MAIN ABOUT GRID
         ===================================================== */}
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20">
-
           {/* =================================================
               LEFT COLUMN
           ================================================= */}
@@ -30,12 +59,12 @@ export function About() {
             <div className="mt-8">
               <Reveal>
                 <h3 className="whitespace-pre-line font-display text-3xl leading-tight text-bone sm:text-4xl lg:text-[2.7rem]">
-                  {profile.aboutHeadline}
+                  {aboutContent.headline}
                 </h3>
               </Reveal>
 
               <div className="mt-8 space-y-5">
-                {profile.aboutParagraphs.map((para, i) => (
+                {aboutContent.paragraphs.map((para, i) => (
                   <Reveal key={i} delayMs={i * 80}>
                     <p className="leading-relaxed text-bone-muted">
                       {para}
@@ -50,48 +79,23 @@ export function About() {
               <div className="mt-10 border-t border-bone/10 pt-7">
                 <div className="flex items-center gap-4">
                   <p className="eyebrow text-gold">
-                    Focus Areas
+                    {t.about.focusAreas}
                   </p>
 
                   <div className="h-px flex-1 bg-bone/10" />
                 </div>
 
                 <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
-                  <div className="rounded-xl border border-bone/10 bg-void-soft/40 px-4 py-3 transition-colors hover:border-gold/30">
-                    <p className="text-sm text-bone">
-                      Artificial Intelligence
-                    </p>
-                  </div>
-
-                  <div className="rounded-xl border border-bone/10 bg-void-soft/40 px-4 py-3 transition-colors hover:border-gold/30">
-                    <p className="text-sm text-bone">
-                      Data Science & Analytics
-                    </p>
-                  </div>
-
-                  <div className="rounded-xl border border-bone/10 bg-void-soft/40 px-4 py-3 transition-colors hover:border-gold/30">
-                    <p className="text-sm text-bone">
-                      Machine Learning
-                    </p>
-                  </div>
-
-                  <div className="rounded-xl border border-bone/10 bg-void-soft/40 px-4 py-3 transition-colors hover:border-gold/30">
-                    <p className="text-sm text-bone">
-                      Computer Vision
-                    </p>
-                  </div>
-
-                  <div className="rounded-xl border border-bone/10 bg-void-soft/40 px-4 py-3 transition-colors hover:border-gold/30">
-                    <p className="text-sm text-bone">
-                      Research & Applied AI
-                    </p>
-                  </div>
-
-                  <div className="rounded-xl border border-bone/10 bg-void-soft/40 px-4 py-3 transition-colors hover:border-gold/30">
-                    <p className="text-sm text-bone">
-                      Python Development
-                    </p>
-                  </div>
+                  {aboutContent.focusAreas.map((area) => (
+                    <div
+                      key={area}
+                      className="rounded-xl border border-bone/10 bg-void-soft/40 px-4 py-3 transition-colors hover:border-gold/30"
+                    >
+                      <p className="text-sm text-bone">
+                        {area}
+                      </p>
+                    </div>
+                  ))}
                 </div>
               </div>
             </Reveal>
@@ -101,7 +105,6 @@ export function About() {
               RIGHT COLUMN
           ================================================= */}
           <div>
-
             {/* Profile photo */}
             <Reveal>
               <div className="flex justify-center lg:justify-start">

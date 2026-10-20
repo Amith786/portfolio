@@ -26,7 +26,7 @@ export const experience: ExperienceEntry[] = [
       "Research & Development (R&D) Department, Dhaanish Ahmed College of Engineering",
     period: "May 2025 – Present",
     description:
-      "Contributing to academic research in Artificial Intelligence and Data Science, including literature review, data analysis, machine learning experimentation, manuscript preparation, research documentation, and development of research-oriented projects.",
+      "Contributing to academic research in Artificial Intelligence and Data Science through literature review, data analysis, machine learning experimentation, manuscript preparation, research documentation, and development of research-oriented projects.",
     tags: [
       "Research",
       "Artificial Intelligence",
@@ -36,13 +36,14 @@ export const experience: ExperienceEntry[] = [
       "Research Writing",
     ],
   },
+
   {
     id: "yuva-intern",
     role: "Junior Data Analyst – Business Analytics with Python",
     organization: "YuvaIntern",
     period: "Aug 2026 – Sep 2026",
     description:
-      "Selected for a 6-week remote internship focused on business analytics with Python. Worked with data analysis techniques to explore datasets, identify patterns and trends, and support data-driven business insights.",
+      "Completed a 6-week remote internship focused on business analytics with Python. Worked with data analysis techniques to explore datasets, identify patterns and trends, and support data-driven business insights.",
     tags: [
       "Python",
       "Data Analysis",

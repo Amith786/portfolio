@@ -28,6 +28,7 @@ import tataGenaiDataAnalytics from "../assets/certificates/tata-genai-data-analy
 export interface Certification {
   id: string;
   name: string;
+  nameDe: string;
   issuer: string;
   date: string;
   credentialId?: string;
@@ -36,6 +37,7 @@ export interface Certification {
   credentialUrl?: string;
   skills?: string[];
   description?: string;
+  descriptionDe?: string;
   expired?: boolean;
 }
 
@@ -43,6 +45,7 @@ export const certifications: Certification[] = [
   {
     id: "iirs-ai-ml-geodata",
     name: "AI/ML for Geodata Analytics",
+    nameDe: "KI/ML für Geodatenanalyse",
     issuer:
       "Indian Institute of Remote Sensing (IIRS), Indian Space Research Organization (ISRO)",
     date: "September 2026",
@@ -57,11 +60,14 @@ export const certifications: Certification[] = [
     ],
     description:
       "Successfully completed the online course AI/ML for Geodata Analytics conducted by IIRS, ISRO, with a focus on applying AI and machine learning techniques to geospatial and remote sensing data.",
+    descriptionDe:
+      "Der Online-Kurs „KI/ML für Geodatenanalyse“ wurde am IIRS, ISRO, erfolgreich abgeschlossen. Der Schwerpunkt lag auf der Anwendung von KI- und Machine-Learning-Verfahren auf Geodaten und Fernerkundungsdaten.",
   },
 
   {
     id: "tata-genai-data-analytics",
     name: "Tata - GenAI Powered Data Analytics Job Simulation",
+    nameDe: "Tata – GenAI-gestützte Datenanalyse-Jobsimulation",
     issuer: "Forage",
     date: "August 2026",
     credentialId: "6a6c29ae1ebe2d46f880eb05",
@@ -77,6 +83,7 @@ export const certifications: Certification[] = [
   {
     id: "ai-tools-claude",
     name: "AI Tools & Claude Workshop",
+    nameDe: "KI-Tools & Claude-Workshop",
     issuer: "Be10x",
     date: "August 2026",
     credentialId: "0270772f-3809-4400-b29b-1e1c61cd09971661059",
@@ -94,6 +101,7 @@ export const certifications: Certification[] = [
   {
     id: "hackerrank-sql",
     name: "SQL (Basic)",
+    nameDe: "SQL (Grundlagen)",
     issuer: "HackerRank",
     date: "March 2026",
     credentialId: "FBA25B18E312",
@@ -106,6 +114,7 @@ export const certifications: Certification[] = [
   {
     id: "power-bi",
     name: "Basics of Microsoft Power BI",
+    nameDe: "Grundlagen von Microsoft Power BI",
     issuer:
       "UniAthena (in partnership with Cambridge International Qualifications, UK)",
     date: "January 2026",
@@ -122,6 +131,7 @@ export const certifications: Certification[] = [
   {
     id: "rpa-foundation",
     name: "RPA Foundation",
+    nameDe: "RPA-Grundlagen",
     issuer: "FutureSkills Prime",
     date: "November 2025",
     credentialId: "TNext_FS_24_RP_G_0298",
@@ -132,6 +142,7 @@ export const certifications: Certification[] = [
   {
     id: "ai-foundation",
     name: "Artificial Intelligence – Foundation",
+    nameDe: "Künstliche Intelligenz – Grundlagen",
     issuer: "FutureSkills Prime",
     date: "November 2025",
     credentialId: "TNext_FS_24_AI_G_1596",
@@ -142,6 +153,7 @@ export const certifications: Certification[] = [
   {
     id: "modern-ai",
     name: "Modern AI",
+    nameDe: "Moderne KI",
     issuer: "FutureSkills Prime",
     date: "November 2025",
     credentialId: "TNext_FS_24_MA_G_0297",
@@ -152,6 +164,7 @@ export const certifications: Certification[] = [
   {
     id: "mongodb-basics",
     name: "MongoDB Basics for Students",
+    nameDe: "MongoDB-Grundlagen für Studierende",
     issuer: "MongoDB",
     date: "August 19, 2025",
     image: mongodbBasics,
@@ -164,11 +177,14 @@ export const certifications: Certification[] = [
     ],
     description:
       "Completed the MongoDB Basics for Students course, covering NoSQL databases, CRUD operations, data modeling, and MongoDB fundamentals.",
+    descriptionDe:
+      "Der Kurs „MongoDB Basics for Students“ wurde erfolgreich abgeschlossen und behandelte NoSQL-Datenbanken, CRUD-Operationen, Datenmodellierung und grundlegende Konzepte von MongoDB.",
   },
 
   {
     id: "goethe-a1",
     name: "Goethe-Zertifikat A1: Start Deutsch 1",
+    nameDe: "Goethe-Zertifikat A1: Start Deutsch 1",
     issuer: "Goethe-Institut Indien",
     date: "April 2025",
     credentialId: "1420-ASA1-0002252692",
@@ -179,6 +195,7 @@ export const certifications: Certification[] = [
   {
     id: "ethics-of-ai",
     name: "Ethics of AI",
+    nameDe: "Ethik der Künstlichen Intelligenz",
     issuer: "University of Helsinki",
     date: "April 22, 2025",
     image: ethicsOfAi,
@@ -192,11 +209,14 @@ export const certifications: Certification[] = [
     ],
     description:
       "Completed the 2 ECTS Ethics of AI online course covering ethical challenges and societal implications of artificial intelligence.",
+    descriptionDe:
+      "Der Online-Kurs „Ethics of AI“ mit 2 ECTS wurde erfolgreich abgeschlossen. Behandelt wurden ethische Herausforderungen und gesellschaftliche Auswirkungen der Künstlichen Intelligenz.",
   },
 
   {
     id: "aws-cloud-foundation",
     name: "Cloud Foundation Badge",
+    nameDe: "Cloud Foundation Badge",
     issuer: "AWS Training and Certifications",
     date: "November 2024",
     image: awsCloudFoundation,
@@ -210,6 +230,7 @@ export const certifications: Certification[] = [
   {
     id: "aws-cloud-essential",
     name: "Cloud Essential Badge",
+    nameDe: "Cloud Essential Badge",
     issuer: "Amazon Web Services (AWS)",
     date: "November 2024",
     image: awsCloudEssential,
@@ -223,6 +244,7 @@ export const certifications: Certification[] = [
   {
     id: "goldman-sachs-software",
     name: "Goldman Sachs - Software Engineering Job Simulation",
+    nameDe: "Goldman Sachs – Software-Engineering-Jobsimulation",
     issuer: "Forage",
     date: "November 2024",
     credentialId: "64H5hHFWrHsERKgzX",
@@ -237,6 +259,7 @@ export const certifications: Certification[] = [
   {
     id: "google-data-analysis-r",
     name: "Data Analysis with R Programming",
+    nameDe: "Datenanalyse mit R-Programmierung",
     issuer: "Google",
     date: "October 2024",
     credentialId: "LQWF6FND71A6",
@@ -249,6 +272,7 @@ export const certifications: Certification[] = [
   {
     id: "hp-data-science",
     name: "Data Science & Analytics",
+    nameDe: "Data Science & Analytics",
     issuer: "HP LIFE",
     date: "October 2024",
     credentialId: "aebe016b-7c5d-4fdd-b944-0cabb8c77526",
@@ -260,6 +284,7 @@ export const certifications: Certification[] = [
   {
     id: "google-visualization",
     name: "Share Data Through the Art of Visualization",
+    nameDe: "Daten durch die Kunst der Visualisierung vermitteln",
     issuer: "Google",
     date: "September 2024",
     credentialId: "HCRDQ0J7YQ2F",
@@ -272,6 +297,7 @@ export const certifications: Certification[] = [
   {
     id: "microsoft-excel",
     name: "Preparing Data for Analysis with Microsoft Excel",
+    nameDe: "Daten für die Analyse mit Microsoft Excel vorbereiten",
     issuer: "Microsoft",
     date: "September 2024",
     credentialId: "ZRCAQMY2SJRM",
@@ -284,6 +310,7 @@ export const certifications: Certification[] = [
   {
     id: "data-science-ai-mindluster",
     name: "Data Science and Artificial Intelligence",
+    nameDe: "Data Science und Künstliche Intelligenz",
     issuer: "MindLuster",
     date: "April 2024",
     credentialId: "17589647425",
@@ -294,6 +321,7 @@ export const certifications: Certification[] = [
   {
     id: "machine-learning-simplilearn",
     name: "Machine Learning",
+    nameDe: "Maschinelles Lernen",
     issuer: "Simplilearn",
     date: "May 2024",
     credentialId: "5570840",
@@ -304,6 +332,7 @@ export const certifications: Certification[] = [
   {
     id: "nptel-java",
     name: "Introduction to Programming Using Java",
+    nameDe: "Einführung in die Programmierung mit Java",
     issuer: "NPTEL",
     date: "October 2023",
     credentialId: "NPTEL23CS74S43354227",

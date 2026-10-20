@@ -12,7 +12,7 @@ const inputClasses =
   "w-full rounded-lg border border-bone/20 bg-transparent px-4 py-3 text-bone placeholder:text-bone-muted/50 outline-none transition-colors focus:border-gold focus:shadow-gold-glow";
 
 export function Contact() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [status, setStatus] = useState<Status>("idle");
 
   const [form, setForm] = useState({
@@ -22,13 +22,34 @@ export function Contact() {
     message: "",
   });
 
+  const isGerman = language === "de";
+
+  const statusMessage = isGerman
+    ? "Ihr E-Mail-Programm sollte geöffnet worden sein und die Nachricht zum Senden bereitstehen."
+    : "Your email client should open with the message ready to send.";
+
+  const updateField = (
+    field: keyof typeof form,
+    value: string,
+  ) => {
+    setForm((current) => ({
+      ...current,
+      [field]: value,
+    }));
+
+    if (status === "sent") {
+      setStatus("idle");
+    }
+  };
+
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const recipient = profile.email;
 
     const subject =
-      form.subject.trim() || `Portfolio Contact from ${form.name}`;
+      form.subject.trim() ||
+      `Portfolio Contact from ${form.name}`;
 
     const body = [
       `Name: ${form.name}`,
@@ -44,16 +65,21 @@ export function Contact() {
       `&body=${encodeURIComponent(body)}`;
 
     window.location.href = mailtoUrl;
-
     setStatus("sent");
   };
 
   return (
-    <section id="contact" className="bg-void py-24 lg:py-32">
+    <section
+      id="contact"
+      className="bg-void py-24 lg:py-32"
+    >
       <div className="container-edit grid grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-24">
         {/* Contact Information */}
         <div>
-          <SectionHeading title={t.contact.heading} tone="dark" />
+          <SectionHeading
+            title={t.contact.heading}
+            tone="dark"
+          />
 
           <Reveal delayMs={80}>
             <p className="mt-6 max-w-md leading-relaxed text-bone-muted">
@@ -61,7 +87,10 @@ export function Contact() {
             </p>
           </Reveal>
 
-          <Reveal delayMs={140} className="mt-10 space-y-4">
+          <Reveal
+            delayMs={140}
+            className="mt-10 space-y-4"
+          >
             <a
               href={`mailto:${profile.email}`}
               className="flex items-center gap-3 text-bone-muted transition-colors hover:text-gold-bright"
@@ -73,7 +102,7 @@ export function Contact() {
             <a
               href={profile.socials.linkedin.url}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="flex items-center gap-3 text-bone-muted transition-colors hover:text-gold-bright"
             >
               <LinkedinIcon size={17} />
@@ -83,7 +112,7 @@ export function Contact() {
             <a
               href={profile.socials.github.url}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="flex items-center gap-3 text-bone-muted transition-colors hover:text-gold-bright"
             >
               <GithubIcon size={17} />
@@ -115,10 +144,12 @@ export function Contact() {
                 <input
                   id="contact-name"
                   name="name"
+                  type="text"
+                  autoComplete="name"
                   required
                   value={form.name}
                   onChange={(e) =>
-                    setForm({ ...form, name: e.target.value })
+                    updateField("name", e.target.value)
                   }
                   className={inputClasses}
                 />
@@ -136,10 +167,11 @@ export function Contact() {
                   id="contact-email"
                   name="email"
                   type="email"
+                  autoComplete="email"
                   required
                   value={form.email}
                   onChange={(e) =>
-                    setForm({ ...form, email: e.target.value })
+                    updateField("email", e.target.value)
                   }
                   className={inputClasses}
                 />
@@ -157,9 +189,10 @@ export function Contact() {
               <input
                 id="contact-subject"
                 name="subject"
+                type="text"
                 value={form.subject}
                 onChange={(e) =>
-                  setForm({ ...form, subject: e.target.value })
+                  updateField("subject", e.target.value)
                 }
                 className={inputClasses}
               />
@@ -180,7 +213,7 @@ export function Contact() {
                 required
                 value={form.message}
                 onChange={(e) =>
-                  setForm({ ...form, message: e.target.value })
+                  updateField("message", e.target.value)
                 }
                 className={`${inputClasses} resize-none`}
               />
@@ -195,8 +228,12 @@ export function Contact() {
             </button>
 
             {status === "sent" && (
-              <p role="status" className="mt-4 text-sm text-gold-bright">
-                Your email client should open with the message ready to send.
+              <p
+                role="status"
+                aria-live="polite"
+                className="mt-4 text-sm text-gold-bright"
+              >
+                {statusMessage}
               </p>
             )}
           </form>

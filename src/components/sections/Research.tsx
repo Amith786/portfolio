@@ -11,121 +11,201 @@ type Tab = "journals" | "conferences";
 type ConferenceView = "author" | "presenter";
 
 export function Research() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+
   const [tab, setTab] = useState<Tab>("journals");
   const [conferenceView, setConferenceView] =
     useState<ConferenceView>("author");
+
+  const isGerman = language === "de";
 
   const visibleConferences = conferences.filter(
     (entry) => entry.category === conferenceView
   );
 
   return (
-    <section id="research" className="bg-paper py-24 lg:py-32">
+    <section
+      id="research"
+      className="bg-paper py-24 lg:py-32"
+    >
       <div className="container-edit">
-        <SectionHeading title={t.research.heading} tone="light" />
+        <SectionHeading
+          title={t.research.heading}
+          tone="light"
+        />
 
-        {/* Main Research Selector */}
+        {/* =====================================================
+            MAIN RESEARCH SELECTOR
+            ===================================================== */}
+
         <Reveal className="mt-10">
           <div
             role="tablist"
-            aria-label="Research categories"
+            aria-label={
+              isGerman
+                ? "Forschungskategorien"
+                : "Research categories"
+            }
             className="inline-flex rounded-full border border-ink/15 p-1"
           >
-            {(
-              [
-                ["journals", t.research.journals],
-                ["conferences", t.research.conferences],
-              ] as const
-            ).map(([key, label]) => (
-              <button
-                key={key}
-                role="tab"
-                aria-selected={tab === key}
-                onClick={() => setTab(key)}
-                className={`rounded-full px-5 py-2 text-sm font-medium tracking-wide transition-colors ${
-                  tab === key
-                    ? "bg-ink text-paper"
-                    : "text-ink-muted hover:text-ink"
-                }`}
-              >
-                {label}
-              </button>
-            ))}
+            <button
+              id="research-tab-journals"
+              role="tab"
+              aria-selected={tab === "journals"}
+              aria-controls="research-panel-journals"
+              onClick={() => setTab("journals")}
+              className={`rounded-full px-5 py-2 text-sm font-medium tracking-wide transition-colors ${
+                tab === "journals"
+                  ? "bg-ink text-paper"
+                  : "text-ink-muted hover:text-ink"
+              }`}
+            >
+              {t.research.journals}
+            </button>
+
+            <button
+              id="research-tab-conferences"
+              role="tab"
+              aria-selected={tab === "conferences"}
+              aria-controls="research-panel-conferences"
+              onClick={() => setTab("conferences")}
+              className={`rounded-full px-5 py-2 text-sm font-medium tracking-wide transition-colors ${
+                tab === "conferences"
+                  ? "bg-ink text-paper"
+                  : "text-ink-muted hover:text-ink"
+              }`}
+            >
+              {t.research.conferences}
+            </button>
           </div>
         </Reveal>
 
-        {/* JOURNALS */}
+        {/* =====================================================
+            JOURNALS
+            ===================================================== */}
+
         {tab === "journals" && (
-          <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
+          <div
+            id="research-panel-journals"
+            role="tabpanel"
+            aria-labelledby="research-tab-journals"
+            className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2"
+          >
             {journals.map((entry) => (
-              <JournalCard key={entry.id} entry={entry} />
+              <JournalCard
+                key={entry.id}
+                entry={entry}
+              />
             ))}
           </div>
         )}
 
-        {/* CONFERENCES */}
-        {tab === "conferences" && (
-          <div className="mt-10">
+        {/* =====================================================
+            CONFERENCES
+            ===================================================== */}
 
-            {/* Conference selector */}
-            <div className="flex items-center justify-between gap-4">
+        {tab === "conferences" && (
+          <div
+            id="research-panel-conferences"
+            role="tabpanel"
+            aria-labelledby="research-tab-conferences"
+            className="mt-10"
+          >
+            {/* Conference heading + selector */}
+
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
               <div>
                 <p className="eyebrow text-gold-dim">
-                  Conference Activity
+                  {isGerman
+                    ? "Konferenzaktivitäten"
+                    : "Conference Activity"}
                 </p>
 
                 <h3 className="mt-2 font-display text-2xl text-ink sm:text-3xl">
                   {conferenceView === "author"
-                    ? "Author / Co-author"
+                    ? isGerman
+                      ? "Autor / Co-Autor"
+                      : "Author / Co-author"
+                    : isGerman
+                    ? "Präsentationen von Forschungsarbeiten"
                     : "Research Paper Presentations"}
                 </h3>
               </div>
 
-              {/* RIGHT SIDE SWITCHER */}
+              {/* Conference type switcher */}
+
               <div
                 role="tablist"
-                aria-label="Conference type"
-                className="flex shrink-0 rounded-full border border-ink/15 p-1"
+                aria-label={
+                  isGerman
+                    ? "Konferenztyp"
+                    : "Conference type"
+                }
+                className="flex w-fit shrink-0 rounded-full border border-ink/15 p-1"
               >
                 <button
+                  id="conference-tab-author"
                   role="tab"
                   aria-selected={conferenceView === "author"}
-                  onClick={() => setConferenceView("author")}
+                  aria-controls="conference-panel-author"
+                  onClick={() =>
+                    setConferenceView("author")
+                  }
                   className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                     conferenceView === "author"
                       ? "bg-ink text-paper"
                       : "text-ink-muted hover:text-ink"
                   }`}
                 >
-                  Author
+                  {isGerman ? "Autor" : "Author"}
                 </button>
 
                 <button
+                  id="conference-tab-presenter"
                   role="tab"
-                  aria-selected={conferenceView === "presenter"}
-                  onClick={() => setConferenceView("presenter")}
+                  aria-selected={
+                    conferenceView === "presenter"
+                  }
+                  aria-controls="conference-panel-presenter"
+                  onClick={() =>
+                    setConferenceView("presenter")
+                  }
                   className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                     conferenceView === "presenter"
                       ? "bg-ink text-paper"
                       : "text-ink-muted hover:text-ink"
                   }`}
                 >
-                  Presenter
+                  {isGerman
+                    ? "Präsentator"
+                    : "Presenter"}
                 </button>
               </div>
             </div>
 
             {/* Conference cards */}
-            <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
-              {visibleConferences.map((entry) => (
-                <ConferenceCard
-                  key={entry.id}
-                  entry={entry}
-                />
-              ))}
-            </div>
 
+            <div
+              id={`conference-panel-${conferenceView}`}
+              role="tabpanel"
+              aria-labelledby={`conference-tab-${conferenceView}`}
+              className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2"
+            >
+              {visibleConferences.length > 0 ? (
+                visibleConferences.map((entry) => (
+                  <ConferenceCard
+                    key={entry.id}
+                    entry={entry}
+                  />
+                ))
+              ) : (
+                <div className="rounded-2xl border border-ink/10 bg-paper-soft p-8 text-sm text-ink-muted">
+                  {isGerman
+                    ? "Derzeit sind keine Konferenzaktivitäten in dieser Kategorie verfügbar."
+                    : "No conference activities are currently available in this category."}
+                </div>
+              )}
+            </div>
           </div>
         )}
       </div>

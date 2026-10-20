@@ -93,7 +93,6 @@ export const projects: Project[] = [
       "Machine Learning",
       "Random Forest",
       "XGBoost",
-      "LightGBM",
       "Feature Engineering",
       "Forecasting",
     ],
@@ -112,7 +111,7 @@ export const projects: Project[] = [
         "Time-aware validation combined with lag features, shifted rolling averages, seasonal representations, and historical climatological information to build forecasting models while avoiding look-ahead leakage.",
 
       methodology:
-        "The workflow includes temporal feature engineering followed by evaluation of multiple machine-learning models, including Random Forest, XGBoost, and LightGBM, using time-aware validation.",
+        "The workflow includes temporal feature engineering followed by evaluation of multiple machine-learning models, including Linear Regression, Random Forest, and XGBoost, using time-aware walk-forward validation.",
 
       datasetInfo:
         "Historical Kerala rainfall records covering long-term monthly rainfall observations. Detailed dataset source, period, and feature description will be added.",
