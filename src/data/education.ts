@@ -13,7 +13,7 @@ export const education: EducationEntry[] = [
     degree: "B.Tech — Artificial Intelligence and Data Science",
     institution: "Dhaanish Ahmed College of Engineering",
     affiliation: "Affiliated to Anna University",
-    detail: "Completed 2026 · CGPA 8.39",
+    detail: "Completed 2026 · CGPA 8.40",
     period: "2022 – 2026",
   },
 
