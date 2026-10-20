@@ -1,4 +1,4 @@
-import yuvaCertificate from "../assets/certificates/Experience/yuva-internship-certificate.jpeg";
+import yuvaCertificate from "../assets/certificates/Experience/yuva-internship-certificate.jpg";
 import techoctanetPythonCertificate from "../assets/certificates/Experience/techoctanet-python-certificate.jpeg";
 import techoctanetJavaCertificate from "../assets/certificates/Experience/techoctanet-java-certificate.jpeg";
 import codsoftCertificate from "../assets/certificates/Experience/codsoft-ai-internship-certificate.jpeg";
